@@ -13,7 +13,7 @@ const ModalKm = ({ usersinfo }) => {
     setUsersForm({ ...UsersForm, [e.target.name]: e.target.value });
   };
   const hundelSubmit = (e) => {
-    usersinfo.push({...UsersForm});
+    usersinfo.push({ ...UsersForm });
     console.log(usersinfo);
   };
   return (

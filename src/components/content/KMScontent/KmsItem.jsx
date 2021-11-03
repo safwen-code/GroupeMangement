@@ -10,7 +10,7 @@ const KmsItem = ({
   return (
     <>
       <div className="col  mt-3 ms-2 me-2 mb-3 " key={id}>
-        <div className="border border-primary ">
+        <div className=" ">
           <span>KmName : {kmName}</span>
           {"  "}
           <span> article : {article}</span>

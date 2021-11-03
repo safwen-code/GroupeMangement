@@ -4,7 +4,7 @@ import { KmsData } from "./KmsData";
 
 const Home = () => {
   return (
-    <div className="container border border-dark mt-5">
+    <div className="container  mt-5">
       <KmsContent Kmsinfo={KmsData} />
     </div>
   );
