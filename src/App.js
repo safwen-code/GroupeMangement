@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import "./App.css";
+import React, { useEffect } from "react";
+import Navbars from "./components/Layout/Navbars";
+import Home from "./components/content/KMScontent/Home";
+import Addkm from "./components/content/KMSforms/Addkm";
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container-fluid">
+      <Navbars />
+      
+      <Home />
+      <Addkm />
     </div>
   );
-}
+};
 
 export default App;
