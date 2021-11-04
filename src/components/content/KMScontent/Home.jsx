@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import KmsContent from "./KmsContent";
-import { KmsData } from "./KmsData";
+
+import ContextKm from "../../context/ContextKm";
 
 const Home = () => {
+  const contextKm = useContext(ContextKm);
+  useEffect(() => {
+    getAllKms();
+    //eslint-disable-next-line
+  }, []);
+  const { kmsInfo, getAllKms, loading } = contextKm;
+
+  console.log("kmInfo from home ", kmsInfo);
+
   return (
     <div className="container  mt-5">
-      <KmsContent Kmsinfo={KmsData} />
+      <KmsContent Kmsinfo={kmsInfo} loading={loading} />
     </div>
   );
 };

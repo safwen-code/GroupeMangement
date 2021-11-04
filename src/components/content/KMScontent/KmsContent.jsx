@@ -3,12 +3,14 @@ import React from "react";
 import KmsItem from "./KmsItem";
 import PropTypes from "prop-types";
 
-const KmsContent = ({ Kmsinfo }) => {
+const KmsContent = ({ Kmsinfo, loading }) => {
   return (
     <div className="row">
-      {Kmsinfo.map((km) => (
-        <KmsItem kmInfo={km} id={km.id} />
-      ))}
+      {!loading && Kmsinfo.length > 0 ? (
+        Kmsinfo.map((km) => <KmsItem kmInfo={km} id={km.id} />)
+      ) : (
+        <h5>no kmsInof</h5>
+      )}
     </div>
   );
 };

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const ModalKm = ({ usersinfo }) => {
   console.log("from modal", usersinfo);
+
   const [UsersForm, setUsersForm] = useState({
     name: "",
     formée: "",
@@ -13,9 +14,11 @@ const ModalKm = ({ usersinfo }) => {
     setUsersForm({ ...UsersForm, [e.target.name]: e.target.value });
   };
   const hundelSubmit = (e) => {
+    e.preventDefault();
     usersinfo.push({ ...UsersForm });
     console.log(usersinfo);
   };
+  
   return (
     <div>
       <button

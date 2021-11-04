@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import ModalKm from "./ModalKm";
-const Addkm = () => {
+import React, { useState, useContext } from "react";
+import ModalKm from "./ModalKm.jsx";
+import ContextKm from "../../context/ContextKm.js";
+
+const Addkm = (props) => {
   const [kmForm, setkmForm] = useState({
     kmName: "",
     article: "",
@@ -8,9 +10,18 @@ const Addkm = () => {
     sableuse: [],
   });
 
-  const { kmName, article, usersinfo, sableuse } = kmForm;
+  const contextContext = useContext(ContextKm);
+  const { AddKm } = contextContext;
+
+  const { kmName, article, usersinfo } = kmForm;
+
   const hundelchange = (e) => {
     setkmForm({ ...kmForm, [e.target.name]: e.target.value });
+  };
+
+  const hundelSubmit = (e) => {
+    console.log("km info ", kmForm);
+    AddKm(kmForm);
   };
   return (
     <div className="container border border-dark mt-3">
@@ -40,11 +51,22 @@ const Addkm = () => {
           </h6>
           <div className="border border-danger mt-3 mb-3 d-flex justify-content-between">
             <div>
-              <ModalKm usersinfo={usersinfo} />
+              {/* <ModalKm usersinfo={usersinfo} /> */}
             </div>
-            <div>displayuser</div>
+            <div>
+              {usersinfo.map((user) => {
+                return <span key={user.id}>{user.name}</span>;
+              })}
+            </div>
           </div>
         </div>
+        <button
+          type="button"
+          className="btn btn-primary d-flex justify-content-center mb-4"
+          onClick={hundelSubmit}
+        >
+          add km
+        </button>
       </form>
     </div>
   );
