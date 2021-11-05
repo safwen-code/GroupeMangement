@@ -1,18 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 
-const ModalKm = ({ kmForm, setkmForm, modalvalue }) => {
+const AddkmSableuse = ({ kmForm, setkmForm }) => {
   // console.log("from modal", usersinfo);
   // console.log("km form from modal km", kmForm);
   // console.log("setkmfor ", setkmForm);
 
-  console.log(modalvalue);
   const [UsersForm, setUsersForm] = useState({
     name: "",
     formée: "",
     role: "",
   });
 
-  const [showModal, setshowModal] = useState(true);
+  const [showModal, setshowModal] = useState(false);
 
   const hundelChange = (e) => {
     setUsersForm({ ...UsersForm, [e.target.name]: e.target.value });
@@ -23,7 +22,7 @@ const ModalKm = ({ kmForm, setkmForm, modalvalue }) => {
   const hundelSubmit = (e) => {
     e.preventDefault();
     console.log("test");
-    const test = kmForm.users.push(UsersForm);
+    const test = kmForm.sableuse.push(UsersForm);
     console.log("test", test);
     // usersinfo.push({ ...UsersForm });
     setkmForm({ ...kmForm, test });
@@ -119,4 +118,4 @@ const ModalKm = ({ kmForm, setkmForm, modalvalue }) => {
   );
 };
 
-export default ModalKm;
+export default AddkmSableuse;
