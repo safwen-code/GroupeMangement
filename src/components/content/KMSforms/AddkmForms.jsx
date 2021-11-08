@@ -1,9 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ModalKm from "./ModalKm.jsx";
 import ContextKm from "../../context/ContextKm.js";
 import AddkmSableuse from "./AddkmSableuse.jsx";
-
-const Addkm = (props) => {
+import { useHistory } from "react-router-dom";
+const AddkmForms = (props) => {
   const [kmForm, setkmForm] = useState({
     kmName: "",
     article: "",
@@ -13,8 +13,22 @@ const Addkm = (props) => {
   });
 
   const contextContext = useContext(ContextKm);
-  const { AddKm } = contextContext;
-
+  const { AddKm, currentKm, updateKmInfo, clearCurrentKm } = contextContext;
+  let history = useHistory();
+  useEffect(() => {
+    if (currentKm !== null) {
+      setkmForm(currentKm);
+    } else {
+      setkmForm({
+        kmName: "",
+        article: "",
+        users: [],
+        sableuse: [],
+        modalvalue: "users",
+      });
+    }
+    //eslint-disable-next-time
+  }, [contextContext, currentKm]);
   const { kmName, article, users, sableuse, modalvalue } = kmForm;
 
   const hundelchange = (e) => {
@@ -23,7 +37,23 @@ const Addkm = (props) => {
 
   const hundelSubmit = (e) => {
     console.log("km info ", kmForm);
-    AddKm(kmForm);
+    if (currentKm === null) {
+      AddKm(kmForm);
+      history.push("/");
+    } else {
+      updateKmInfo(kmForm);
+    }
+    clearAll();
+  };
+  const clearAll = () => {
+    clearCurrentKm();
+    setkmForm({
+      kmName: "",
+      article: "",
+      users: [],
+      sableuse: [],
+      modalvalue: "users",
+    });
   };
   return (
     <div className="container border border-dark mt-3">
@@ -63,7 +93,11 @@ const Addkm = (props) => {
             </div>
             <div>
               {users.map((user, index) => {
-                return <span key={index}>{user.name}</span>;
+                return (
+                  <span key={index} className="ms-2 me-3">
+                    {user.name}
+                  </span>
+                );
               })}
             </div>
           </div>
@@ -80,4 +114,4 @@ const Addkm = (props) => {
   );
 };
 
-export default Addkm;
+export default AddkmForms;
