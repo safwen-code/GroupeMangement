@@ -1,4 +1,10 @@
-import { GET_KMS, ADD_KM } from "./type";
+import {
+  GET_KMS,
+  ADD_KM,
+  SET_CURRENT_KM,
+  CLEAR_CURRENT_KM,
+  UPDATE_KM,
+} from "./type";
 
 import RducerKm from "./RdeducerKm";
 import ContextKm from "./ContextKm";
@@ -61,6 +67,7 @@ const StateKm = ({ children }) => {
       },
     ],
     loading: true,
+    currentKm: null,
   };
   const [state, dispatch] = useReducer(RducerKm, initialState);
 
@@ -74,17 +81,33 @@ const StateKm = ({ children }) => {
     dispatch({ type: GET_KMS });
   };
 
-  //delKms
+  //setcurrentKM to edite
+  const setCurrentKm = (kminfo) => {
+    dispatch({ type: SET_CURRENT_KM, payload: kminfo });
+  };
+  //clear current km
+  const clearCurrentKm = () => {
+    dispatch({ type: CLEAR_CURRENT_KM });
+  };
 
   //updatekms
+  const updateKmInfo = (kmForm) => {
+    dispatch({ type: UPDATE_KM, payload: kmForm });
+  };
+
+  //delKms
 
   return (
     <ContextKm.Provider
       value={{
         kmsInfo: state.kmsInfo,
         loading: state.loading,
+        currentKm: state.currentKm,
         AddKm,
         getAllKms,
+        setCurrentKm,
+        clearCurrentKm,
+        updateKmInfo,
       }}
     >
       {children}

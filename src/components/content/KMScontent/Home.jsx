@@ -5,13 +5,13 @@ import ContextKm from "../../context/ContextKm";
 
 const Home = () => {
   const contextKm = useContext(ContextKm);
-  useEffect(() => {
-    getAllKms();
-    //eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   getAllKms();
+  //   //eslint-disable-next-line
+  // }, []);
   const { kmsInfo, getAllKms, loading } = contextKm;
 
-  console.log("kmInfo from home ", kmsInfo);
+  // console.log("kmInfo from home ", kmsInfo);
 
   return (
     <div className="container  mt-5">
